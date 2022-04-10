@@ -40,7 +40,10 @@ function submitBill(e) {
 
         // console.log(bill.computeTip());
         accumulatedTip(bill.computeTip());
-        document.querySelector('#tip-amt').textContent = `$${bill.computeTip().toFixed(2)}`
+        document.querySelector('#tip-amt').textContent = `$${bill.computeTip().toFixed(2)}`;
+        customerBill.value = '';
+        tipPercentage.value = '';
+        numOfPeople.value = '';
     }
 }
 
