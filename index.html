@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="/public/css/main.css">
+  <title>Frontend Mentor | Tip calculator app</title>
+
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <style>
+    .attribution { font-size: 11px; text-align: center; }
+    .attribution a { color: hsl(228, 45%, 44%); }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1 class="header">splitter</h1>
+    </header>
+    <main class="app-container">
+      <!-- Entries section -->
+      <div class="app__entries-container">
+        <form class="app__tip-entries" id="tip-form">
+          <label class="total-bill__label" for=""><h2 class="bill__header">Bill</h2></label>
+          <span class="input-container">
+            <img class="bill-currency input-icon" src="./public/img/icon-dollar.svg" alt="Dollar icon">
+            <input class="total-bill__entry input" id="bill-input" type="text" name="bill" id="bill" autocomplete="off" placeholder="0">
+          </span>
+          <div class="tip-percentage__container" id="percentage-selection">
+            <label class="tip-selection__label" for=""><h2 class="tip__header">Select Tip %</h2></label>
+            <button tabindex="" class="tip-percentage--btn --btn" id="five-percent" type="button" value="0.05">5%</button>
+            <button tabindex="" class="tip-percentage--btn --btn" id="ten-percent" type="button" value="0.10">10%</button>
+            <button tabindex="" class="tip-percentage--btn --btn" id="fifteen" type="button" value="0.15">15%</button>
+            <button tabindex="" class="tip-percentage--btn --btn" id="twenty-five-percent" type="button" value="0.25">25%</button>
+            <button tabindex="" class="tip-percentage--btn --btn" id="fifty-percent" type="button" value="0.50">50%</button>
+            <button tabindex="" class="tip-percentage--btn --btn" id="custom-tip" type="button">Custom</button>
+          </div>
+          <label class="number-of-people__label" for=""><h2 class="number-of-people__header">Number of People</h2></label>
+          <span class="input-container">
+            <img class="person-icon input-icon" src="./public/img/icon-person.svg" alt="Person icon">
+            <input class="number-of-people__entry input" id="num-of-people" type="text" name="" id="" autocomplete="off" placeholder="0">
+          </span>
+        </form>
+      </div>
+
+      <!-- Computation Section -->
+      <div class="computation__container">
+        <div class="summary__container">
+          <div class="tip-amt__container tip-summary">
+            <h2 class="tip-amt__header tip-header">
+              <span>Tip Amount</span>
+              <span>/ person</span>
+            </h2>
+            <span class="tip-amt amt-summary" id="tip-amt">$0.00</span>
+          </div>
+  
+          <div class="total-tip__container tip-summary">
+            <h2 class="total-tip__header tip-header">
+              <span>Total</span>
+              <span>/ person</span>
+            </h2>
+            <span class="total-amt amt-summary" id="total-amt">$0.00</span>
+          </div>
+        </div>
+        <button class="tip-reset--btn --btn" id="reset" type="button">reset</button>
+      </div>
+    </main>
+
+    <div class="attribution">
+      <p>Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.</p>
+      <p>Coded by <a href="https://www.frontendmentor.io/dashboard/my-challenges?tab=completed">Rolly Castillo</a>.</p> 
+    </div>
+  </div>
+
+  <script src="src/js/index.js"></script>
+</body>
+</html>

@@ -1,0 +1,243 @@
+/// font-stack
+$font-stack: 'Space Mono', monospace;
+
+/// brand colors
+$primary-color: hsl(172, 67%, 45%); // Strong cyan
+$neutral-1: hsl(183, 100%, 15%); // Very dark cyan
+$neutral-2: hsl(186, 14%, 43%); // Dark grayish cyan
+$neutral-3: hsl(184, 14%, 56%); // Grayish cyan
+$neutral-4: hsl(185, 41%, 84%); // Light grayish cyan
+$neutral-5: hsl(189, 41%, 97%); // Very light grayish cyan
+$neutral-6: hsl(0, 0%, 100%); // White
+
+/// form input font size
+$form-input-fs: 24px;
+
+*,
+*::before,
+*::after,
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/// Global Styles
+body {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    font-family: $font-stack;
+    background-color: $neutral-4;
+    align-items: center;
+    height: 100vh;
+}
+
+h2 {
+    font-size: 1rem;
+    color: $neutral-2;
+}
+
+button:active,
+button:focus {
+    transform: scale(0.97);
+}
+
+div.container {
+    grid-column: 1 / span 4;
+    max-width: 375px;
+    margin: 0 auto;
+
+    h1.header {
+        text-align: center;
+        text-transform: uppercase;
+        letter-spacing: .5rem;
+        margin: 2rem auto;
+        width: 109px;
+        height: auto;
+        word-wrap: break-word;
+        line-height: 2.5rem;
+        color: $neutral-2;
+        font-size: 1.5rem;
+    }
+}
+
+main.app-container {
+    background-color: $neutral-6;
+    border-radius: 25px;
+    padding: 2rem;
+
+    button.--btn,
+    input.input {
+        display: block;
+        height: 3rem;
+        width: 100%;
+        border-radius: 5px;
+        border: none;
+        outline: none;
+        font-size: $form-input-fs;
+        font-family: $font-stack;
+        color: $neutral-6;
+    }
+
+    input.input {
+        text-align: right;
+        color: $neutral-1;
+        padding: 0 1.25rem;
+    }
+}
+
+div.app__entries-container {
+    margin-bottom: 2rem;
+
+    span.input-container {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+
+        img.input-icon {
+            position: absolute;
+            z-index: 1;
+            margin: auto;
+            display: inline-block;
+            margin-left: 1.25rem;
+        }
+    }
+
+    div.tip-percentage__container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+        margin: 2rem 0;
+    }
+
+    label.tip-selection__label {
+        grid-column: 1 / span 2;
+    }
+
+    button.tip-percentage--btn {
+        background-color: $neutral-1;
+    }
+
+    button.tip-percentage--btn:focus {
+        background-color: $primary-color    ;
+    }
+
+    button.active {
+        background-color: $primary-color;
+        color: $neutral-1;
+    }
+
+    button:last-of-type {
+        background-color: $neutral-5;
+        color: $neutral-2;
+    }
+
+    input.input {
+        background-color: $neutral-5;
+    }
+}
+
+
+div.computation__container {
+    background-color: $neutral-1;
+    border-radius: 15px;
+    padding: 1.5rem;
+
+    div.tip-summary {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1.5rem;
+
+        span.amt-summary {
+            color: $primary-color;
+            font-size: calc($form-input-fs + 0.25rem);
+        }
+    }
+
+    h2.tip-header span {
+        display: block;
+        line-height: 1.5rem;
+    }
+
+    h2.tip-header {
+        span:first-child {
+            color: $neutral-6;
+        }
+
+        span:last-child {
+            font-size: calc($form-input-fs - 0.5rem);
+            color: $neutral-3;
+        }
+    } 
+
+    button.tip-reset--btn {
+        background-color: $primary-color;
+        color: $neutral-1;
+        text-transform: uppercase;
+        font-size: calc($form-input-fs - 0.25rem);
+    }
+}
+
+div.attribution {
+    grid-column: 1 / span 4;
+    margin: 1rem;
+}
+
+@media(min-width: 950px) {
+    body {
+        grid-template-columns: repeat(12, 1fr);
+
+        div.container {
+            grid-column: 2 / span 10;
+            max-width: unset;
+            margin: unset;
+
+        }
+    }
+
+    main.app-container {
+        display: flex;
+        gap: 2rem;
+
+        > div {
+            width: 50%;
+        }
+
+        div.app__entries-container {
+            margin-bottom: unset;
+
+            label {
+                grid-column: 1 / span 3;
+            }
+        }
+
+        span.input-container {
+            width: 100%;
+        }
+
+        div.tip-percentage__container {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        div.computation__container {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+
+            span.amt-summary {
+                font-size: calc($form-input-fs + 0.5rem);
+            }
+        }
+    }
+}
+
+@media (min-width: 1440px) {
+    body {
+        div.container {
+            grid-column: 3 / span 8;
+            width: 950px;
+            margin: 0 auto;
+        }
+    }
+}
