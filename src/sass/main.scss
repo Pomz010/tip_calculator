@@ -84,6 +84,12 @@ main.app-container {
         color: $neutral-1;
         padding: 0 1.25rem;
     }
+
+    input[type=number]::-webkit-inner-spin-button, 
+    input[type=number]::-webkit-outer-spin-button { 
+        -webkit-appearance: none; 
+        margin: 0; 
+    }
 }
 
 div.app__entries-container {
@@ -132,8 +138,17 @@ div.app__entries-container {
         color: $neutral-2;
     }
 
-    input.input {
+    label.number-of-people__label {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    input.number-of-people__entry {
         background-color: $neutral-5;
+    }
+
+    input.people-input {
+        border: 2px solid rgb(250, 130, 75);
     }
 }
 
@@ -190,8 +205,8 @@ div.attribution {
 
         div.container {
             grid-column: 2 / span 10;
-            max-width: unset;
-            margin: unset;
+            width: 80vw;
+            max-width: 950px;
 
         }
     }
@@ -236,8 +251,6 @@ div.attribution {
     body {
         div.container {
             grid-column: 3 / span 8;
-            width: 950px;
-            margin: 0 auto;
         }
     }
 }

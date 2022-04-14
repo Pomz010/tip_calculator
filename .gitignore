@@ -17,4 +17,3 @@
 .prettierignore
 node_modules
 design
-*.md

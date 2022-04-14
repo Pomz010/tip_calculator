@@ -29,7 +29,7 @@
           <label class="total-bill__label" for=""><h2 class="bill__header">Bill</h2></label>
           <span class="input-container">
             <img class="bill-currency input-icon" src="./public/img/icon-dollar.svg" alt="Dollar icon">
-            <input class="total-bill__entry input" id="bill-input" type="text" name="bill" id="bill" autocomplete="off" placeholder="0">
+            <input class="total-bill__entry input" id="bill-input" type="number" name="bill" id="bill" autocomplete="off" placeholder="0">
           </span>
           <div class="tip-percentage__container" id="percentage-selection">
             <label class="tip-selection__label" for=""><h2 class="tip__header">Select Tip %</h2></label>
@@ -40,10 +40,12 @@
             <button tabindex="" class="tip-percentage--btn --btn" id="fifty-percent" type="button" value="0.50">50%</button>
             <button tabindex="" class="tip-percentage--btn --btn" id="custom-tip" type="button">Custom</button>
           </div>
-          <label class="number-of-people__label" for=""><h2 class="number-of-people__header">Number of People</h2></label>
+          <label class="number-of-people__label" id="num-of-ppl__label" for="">
+            <h2 class="number-of-people__header" id="num-of-ppl-header">Number of People</h2>
+          </label>
           <span class="input-container">
             <img class="person-icon input-icon" src="./public/img/icon-person.svg" alt="Person icon">
-            <input class="number-of-people__entry input" id="num-of-people" type="text" name="" id="" autocomplete="off" placeholder="0">
+            <input class="number-of-people__entry input" id="num-of-people" type="number" name="" id="" autocomplete="off" placeholder="0">
           </span>
         </form>
       </div>
