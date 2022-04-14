@@ -32,24 +32,24 @@ function submitBill(e) {
         const customerBill = document.querySelector('#bill-input'),
               tipPercentage = document.querySelector('button.active'),
               numOfPeople = document.querySelector('#num-of-people'),
-              errorLabel = document.querySelector('#num-of-ppl__label'),
+              errorContainer = document.querySelector('#num-of-people__header-container'),
               numOfPpolError = document.createElement('span'),
               errorAlert = document.createTextNode(`Can't be zero`),
               errorParentElement = document.querySelector('#num-of-people');
 
         // Display alert error if "Number of People" field is empty or zero
-        while((numOfPeople.value === '') && errorLabel.querySelector('#error-number') === null) {
+        while((numOfPeople.value === '') && document.querySelector('#error-number') === null) {
             numOfPpolError.setAttribute('id', 'error-number');
             numOfPpolError.appendChild(errorAlert);
             numOfPpolError.style.color = 'rgb(250, 130, 75)';  
-            errorLabel.appendChild(numOfPpolError);
+            errorContainer.appendChild(numOfPpolError);
             errorParentElement.classList.add('people-input');
             console.log(e);
         } 
         
 
         // Remove alert error if user finally enters value to "Number of People" field greater than zero
-        if((numOfPeople.value !== '') && errorLabel.querySelector('#error-number') !== null) {
+        if((numOfPeople.value !== '') && document.querySelector('#error-number') !== null) {
             bill = new Tip(customerBill.value, tipPercentage.value, numOfPeople.value);
             document.querySelector('#error-number').remove();
             errorParentElement.classList.remove('people-input');
@@ -75,7 +75,6 @@ const accumulatedTip = (function(tip) {
     let totalTip = 0;
     return function(t) {
         totalTip += t;
-        // console.log(totalTip)
         document.querySelector('#total-amt').textContent = `$${totalTip.toFixed(2)}`;
         return totalTip;
     }
@@ -107,54 +106,53 @@ function billEntry(e) {
 
     const realNumber = Number(e.key);
 
-    // console.log(realNumber);
-
     if(isNaN(realNumber)) {
-        console.log(true);
-        isZero(undefined, realNumber);
+        // console.log(true);
+        isZero(null);
         return;
     } else {
-        console.log(false);
-        e.returnValue = isZero(realNumber, undefined);
+        // console.log(false);
+        e.returnValue = isZero(realNumber);
     }
-
-    // Closure function result will be assigned to const billReturnValue
-    // const billReturnValue = isZero(Number(e.key));
-
-    // Event.returnValue will get a bolean value from billEntry closure function
-    // e.returnValue = billReturnValue;
-    // console.log(e);
 }
-
-
-
-
-
-
-/***************** VALIDATE FIRST DIGIT NOT YET WORKING *******************/
 
 // Closure function that will contain number entered in bill
 // -> then validates if first digit entered by the user is 0.
-const isZero = (function(firstDigit, backspace) {
+const isZero = (function(digit) {
 
     // Array container for number entered in bill 
     const billArray = [];
 
     // Function that will push number to billArray
-    return function(firstDigit = 0, backspace) {
-        const charType = billArray.push(firstDigit);
-        console.log(billArray);
+    return function(digit) {
 
         // Check if first digit entered is zero.
-        // If number is zero, it will pop the number and will not display
-        // -> in "Bill" field.
-        if(billArray[0] < 1) {
-            billArray.pop();
+        // If number is zero and first index of array is equal to zero
+        // -> then it won't accept the number
+        if(digit === 0 && billArray[0] === 0) {
+            // console.log(billArray);
             return false;
+        
+
+        // if first index of billArray is greater than zero and digit value is not
+        // -> equal to null then digit entered will be stored to array container.
+        } else if(digit !== null && billArray[0] > 0) {
+            billArray.push(digit);
+            // console.log(billArray);
+            return true;
+
+        // if digit entered is greater than zero and array container is still empty
+        // -> then digit will be stored to array container
+        } else if(digit > 0) {
+            billArray.push(digit);
+            // console.log(billArray);
+            return true;
 
         // Else if first digit is not zero, it will accept the number
         // -> and display the number in "Bill" field.
-        } else {
+        } else if(digit === null){
+            billArray.pop();
+            // console.log(billArray);
             return true;
         }
     }

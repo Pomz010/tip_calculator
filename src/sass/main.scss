@@ -30,6 +30,12 @@ body {
     background-color: $neutral-4;
     align-items: center;
     height: 100vh;
+
+    p.how-to {
+        text-align: center;
+        color: $neutral-2;
+        margin: 0.5rem 0;
+    }
 }
 
 h2 {
@@ -138,7 +144,7 @@ div.app__entries-container {
         color: $neutral-2;
     }
 
-    label.number-of-people__label {
+    div.num-of-people__header {
         display: flex;
         justify-content: space-between;
     }
