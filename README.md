@@ -11,7 +11,7 @@ This app will compute two things:
 * Tip amount per person
   * Formula: (bill * tip percentage) / Number of persons sharing
 * Accumulated or total tip per person
-  * Formula: Accumulate + Tip amount per person
+  * Formula: Accumulated Tip + Tip amount per person
 
 ## Technologies Used
 
