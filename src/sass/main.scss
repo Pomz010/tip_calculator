@@ -91,6 +91,10 @@ main.app-container {
         padding: 0 1.25rem;
     }
 
+    input.input:focus {
+        outline: 2px solid $neutral-2;
+    }
+
     input[type=number]::-webkit-inner-spin-button, 
     input[type=number]::-webkit-outer-spin-button { 
         -webkit-appearance: none; 
@@ -126,11 +130,11 @@ div.app__entries-container {
         grid-column: 1 / span 2;
     }
 
-    button.tip-percentage--btn {
+    button.tip-percentage {
         background-color: $neutral-1;
     }
 
-    button.tip-percentage--btn:focus {
+    button.tip-percentage:focus {
         background-color: $primary-color    ;
     }
 
@@ -139,9 +143,10 @@ div.app__entries-container {
         color: $neutral-1;
     }
 
-    button:last-of-type {
+    input.custom-tip {
         background-color: $neutral-5;
         color: $neutral-2;
+        cursor: pointer;
     }
 
     div.num-of-people__header {

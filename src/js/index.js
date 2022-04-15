@@ -4,7 +4,7 @@
 class Tip {
     constructor(customerBill, tipPercentage, numOfPeople) {
         this.customerBill = customerBill;
-        this.tipPercentage = tipPercentage;
+        this.tipPercentage = tipPercentage / 100;
         this.numOfPeople = numOfPeople;
     }
 
@@ -17,20 +17,23 @@ class Tip {
 // Add event listener for pressing space when selecting tip percentage and enter when submitting tip entries
 document.querySelector('#tip-form').addEventListener('keypress', submitBill);
 function submitBill(e) {
-    console.log(e.keyCode);
+    // console.log(e.keyCode);
     const percentSelection = document.querySelectorAll('.tip-percentage--btn');
+    const customTip = document.querySelector('#custom-tip');
 
     // Selecting tip percentage by pressing space bar on keyboard
     for(let i = 0; i != 5; i++) {
         if(e.keyCode === 32 && percentSelection[i] === e.target) {
             percentSelection[i].classList.add('active');
+        } else if(e.keyCode === 32 && customTip === e.target) {
+            customTip.classList.add('active');
         }
     }
 
     // Submitting tip entries by presssing enter on keyboard
     if(e.keyCode === 13) {
         const customerBill = document.querySelector('#bill-input'),
-              tipPercentage = document.querySelector('button.active'),
+              tipPercentage = document.querySelector('.active'),
               numOfPeople = document.querySelector('#num-of-people'),
               errorContainer = document.querySelector('#num-of-people__header-container'),
               numOfPpolError = document.createElement('span'),
@@ -58,6 +61,7 @@ function submitBill(e) {
             accumulatedTip(bill.computeTip());
             document.querySelector('#tip-amt').textContent = `$${bill.computeTip().toFixed(2)}`;
             console.log(e);
+            console.log(bill);
        
         // If user submits tip entries providing all required values, then proceed to tip computation 
         } else if(numOfPeople.value !== ''){
@@ -66,6 +70,7 @@ function submitBill(e) {
             accumulatedTip(bill.computeTip());
             document.querySelector('#tip-amt').textContent = `$${bill.computeTip().toFixed(2)}`;
             console.log(e);
+            console.log(bill);
         }
     }
 }
@@ -81,12 +86,17 @@ const accumulatedTip = (function(tip) {
 })();
 
 // Alternative way in selecting tip percentage using mouse click instead of pressing space bar
-document.querySelector('#percentage-selection').addEventListener('click', selectPercentage);
+document.querySelector('#percentage-selection').addEventListener("click", selectPercentage);
 function selectPercentage(e) {
-    const percentSelection = document.querySelectorAll('.tip-percentage--btn');
+    console.log(e);
+    console.log(e.target);
+    const percentSelection = document.querySelectorAll('.tip-percentage');
+    const customTip = document.querySelector('#custom-tip');
     for(let i = 0; i != 5; i++) {
         if(percentSelection[i] === e.target) {
             percentSelection[i].classList.add('active');
+        } else if(e.target === customTip) {
+            customTip.classList.add('active');
         } else {
             percentSelection[i].classList.remove('active');
         }
