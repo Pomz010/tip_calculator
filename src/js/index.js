@@ -17,18 +17,17 @@ class Tip {
 // Add event listener for pressing space when selecting tip percentage and enter when submitting tip entries
 document.querySelector('#tip-form').addEventListener('keypress', submitBill);
 function submitBill(e) {
-    // console.log(e.keyCode);
-    const percentSelection = document.querySelectorAll('.tip-percentage--btn');
+    const percentSelection = document.querySelectorAll('.tip-percentage');
     const customTip = document.querySelector('#custom-tip');
 
     // Selecting tip percentage by pressing space bar on keyboard
-    for(let i = 0; i != 5; i++) {
-        if(e.keyCode === 32 && percentSelection[i] === e.target) {
-            percentSelection[i].classList.add('active');
-        } else if(e.keyCode === 32 && customTip === e.target) {
-            customTip.classList.add('active');
+    percentSelection.forEach(percent => {
+        if(percent === e.target) {
+            e.target.click();
+        } else {
+            e.target.click();
         }
-    }
+    })
 
     // Submitting tip entries by presssing enter on keyboard
     if(e.keyCode === 13) {
@@ -47,7 +46,6 @@ function submitBill(e) {
             numOfPpolError.style.color = 'rgb(250, 130, 75)';  
             errorContainer.appendChild(numOfPpolError);
             errorParentElement.classList.add('people-input');
-            console.log(e);
         } 
         
 
@@ -57,20 +55,14 @@ function submitBill(e) {
             document.querySelector('#error-number').remove();
             errorParentElement.classList.remove('people-input');
 
-            console.log(typeof numOfPeople.value[0]);
             accumulatedTip(bill.computeTip());
             document.querySelector('#tip-amt').textContent = `$${bill.computeTip().toFixed(2)}`;
-            console.log(e);
-            console.log(bill);
        
         // If user submits tip entries providing all required values, then proceed to tip computation 
         } else if(numOfPeople.value !== ''){
             bill = new Tip(customerBill.value, tipPercentage.value, numOfPeople.value);
-            console.log(typeof numOfPeople.value[0]);
             accumulatedTip(bill.computeTip());
             document.querySelector('#tip-amt').textContent = `$${bill.computeTip().toFixed(2)}`;
-            console.log(e);
-            console.log(bill);
         }
     }
 }
@@ -88,19 +80,16 @@ const accumulatedTip = (function(tip) {
 // Alternative way in selecting tip percentage using mouse click instead of pressing space bar
 document.querySelector('#percentage-selection').addEventListener("click", selectPercentage);
 function selectPercentage(e) {
-    console.log(e);
-    console.log(e.target);
     const percentSelection = document.querySelectorAll('.tip-percentage');
     const customTip = document.querySelector('#custom-tip');
-    for(let i = 0; i != 5; i++) {
-        if(percentSelection[i] === e.target) {
-            percentSelection[i].classList.add('active');
-        } else if(e.target === customTip) {
-            customTip.classList.add('active');
+
+    percentSelection.forEach(percent => {
+        if(percent === e.target) {
+            percent.classList.add('active');
         } else {
-            percentSelection[i].classList.remove('active');
+            percent.classList.remove('active');
         }
-    }
+    })
 }
 
 // Prevent user to enter 0(string) as first character in "Bill" and "Number of People" field
@@ -167,3 +156,8 @@ const isZero = (function(digit) {
         }
     }
 })();
+
+document.querySelector('#reset').addEventListener('click', clear);
+function clear(e) {
+    location.reload();
+}
